@@ -15,7 +15,8 @@ env:
   
 jobs:
   test:
-    env:
+    environment: testing #Shows secret from that environment only
+    env: #Allows you to add environment variables 
       MONGODB_CLUSTER_ADDRESS: 'project1.fzm9bgt.mongodb.net'
       MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }}
       MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD }}
@@ -45,10 +46,10 @@ jobs:
       - name: Run tests
         run: npm test
       - name: Output information
-        run: |
+        run: | #Here we are accessing environment variables
           echo "MONGODB_USERNAME: ${{ env.MONGODB_USERNAME }}"
-          echo "MONGODB_NAME: ${{ env.MONGODB_DB_NAME }}"
-
+          echo "MONGODB_NAME: ${{ env.MONGODB_DB_NAME }}" 
+          
   deploy:
     needs: test
     runs-on: ubuntu-latest
