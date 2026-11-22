@@ -32,13 +32,13 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Run server
-        run: npm start & npx wait-on http://127.0.0.1:$PORT
+        run: npm start & npx wait-on --timeout 60000 http://127.0.0.1:$PORT
       - name: Run tests
         run: npm test
       - name: Output information
         run: |
           echo "MONGODB_USERNAME: ${{ env.MONGODB_USERNAME }}"
-          echo "MONGODB_NAME: ${{ env.MONGODB_DBNAME }}"
+          echo "MONGODB_NAME: ${{ env.MONG0DB_DB_NAME }}"
 
   deploy:
     needs: test
