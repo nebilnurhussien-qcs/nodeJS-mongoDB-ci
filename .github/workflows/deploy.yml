@@ -39,7 +39,9 @@ jobs:
           npx wait-on --timeout 60000 http://127.0.0.1:$PORT
       - name: Debug server
         if: failure()
-        run: timeout 60 npm start
+        run: |
+          pkill -f "npm start" || true
+          timeout 60 npm start
       - name: Run tests
         run: npm test
       - name: Output information
