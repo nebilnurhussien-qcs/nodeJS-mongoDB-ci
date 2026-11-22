@@ -31,8 +31,15 @@ jobs:
           key: npm-deps-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
         run: npm install
+      #- name: Run server
+        #run: npm start & npx wait-on --timeout 60000 http://127.0.0.1:$PORT
       - name: Run server
-        run: npm start & npx wait-on --timeout 60000 http://127.0.0.1:$PORT
+        run: |
+          npm start 2>&1 &
+          npx wait-on --timeout 60000 http://127.0.0.1:$PORT
+      - name: Debug server
+        if: failure()
+        run: timeout 60 npm start
       - name: Run tests
         run: npm test
       - name: Output information
