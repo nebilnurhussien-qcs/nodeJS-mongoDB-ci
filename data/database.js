@@ -21,7 +21,7 @@ try {
   console.log('Hang On! Connecting to your DB...');
   await client.connect();
   console.log('Connected to your DB Server');
-  const database = client.db(dbName);
+  database = client.db(dbName);
   await database.command({ ping: 1 });
 
   console.log('Ping Successful!');
