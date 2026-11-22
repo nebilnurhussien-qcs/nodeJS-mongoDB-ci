@@ -9,7 +9,7 @@ on:
 
 
 env:
-  MONG0DB_DB_NAME: mongodb
+  MONGODB_DB_NAME: mongodb
   
 
   
@@ -47,7 +47,7 @@ jobs:
       - name: Output information
         run: |
           echo "MONGODB_USERNAME: ${{ env.MONGODB_USERNAME }}"
-          echo "MONGODB_NAME: ${{ env.MONG0DB_DB_NAME }}"
+          echo "MONGODB_NAME: ${{ env.MONGODB_DB_NAME }}"
 
   deploy:
     needs: test
