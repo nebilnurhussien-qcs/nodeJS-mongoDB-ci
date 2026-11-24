@@ -22,6 +22,8 @@ jobs:
       MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD }}
       PORT: 8080
     runs-on: ubuntu-latest
+    container: #Creates a container on the runner
+      image: node:18 
     steps:
       - name: Get Code
         uses: actions/checkout@v3
